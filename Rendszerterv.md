@@ -29,7 +29,7 @@ Szórakoztató, szerencsejáték alapú program, amelynek célja a Gatcha addikc
 
 ### 2.4 Mérföldkövek:
 
-- 04. 06. Rendszerterv Megírása
+- Április 06. Rendszerterv Megírása
 
 ## 3. Üzleti folyamatok modellje
 
