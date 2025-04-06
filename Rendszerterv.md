@@ -1,22 +1,24 @@
 # progtech-beadando
 # Rendszerterv
 ## 1. A rendszer célja
-Az alkalmazás célja egy változatos és szórakoztató szerencsejáték szimuláció biztosítása, amelyben a felhasználók különböző játékokat próbálhatnak ki. A fő cél az, hogy az alkalmazás vonzó alternatívát nyújtson a szerencsejáték függőséggel küzdők számára, segítve őket abban, hogy inkább biztonságos környezetben játszanak. A rendszer céljai közé tartozik továbbá a játékosok nyereség/veszteség arányának nyomon követése, az elemzések és statisztikák biztosítása a játékokról, valamint a felhasználói élmény folyamatos javítása és a felhasználói visszajelzések gyűjtése a fejlesztési folyamat során.
+Szórakoztató, szerencsejáték alapú program, amelynek célja a Gatcha addikció okozása, hogy akinek szükséges lehetősége legyen az általa játszott játékon kívül is kiélni a vágyait.
 ## 2. Projektterv
 
 ### 2.1 Projektszerepkörök, felelőségek:
   * Üzleti szereplő:
 	  -   Megrendelő:
-		  -  Troll Ede
+		  -  Herbák Marcell
      
 ### 2.2 Projektmunkások és felelőségek:
    * Frontend és backend:
-     - Bodnár Máté
-     - Herbák Marcell
+     	- Balogh István
+     	- Pál Tamás
+     	- Hajdu Bence
    * Tesztelés:
-     - Bodnár Máté
-     - Herbák Marcell
-     
+     	- Balogh István
+     	- Pál Tamás
+     	- Hajdu Bence
+
 ### 2.3 Ütemterv:
 
 |Funkció                  | Feladat                                | Prioritás | Becslés (nap) | Aktuális becslés (nap) | Eltelt idő (nap) | Becsült idő (nap) |
@@ -26,11 +28,8 @@ Az alkalmazás célja egy változatos és szórakoztató szerencsejáték szimul
 |Program                  |Tesztelés                               |         3 |             1 |                      1 |                1 |                   1 |
 
 ### 2.4 Mérföldkövek:
-   *   05.10. Projekt elkezdése
-   *   05.11. Alap prototípus elkészítése
-   *   05.12. Végleges prototípus elkészítése
-   *   05.12. Tesztelés
-   *   05.13. Bemutatás és átadás
+
+- 04. 06. Rendszerterv Megírása
 
 ## 3. Üzleti folyamatok modellje
 
@@ -40,21 +39,14 @@ Az alkalmazás regisztráció vagy bejelentkezés után válik elérhetővé, b�
 ### 3.2 Üzleti folyamatok
 Az alkalmazás indulását követően a felhasználónak be kell jelentkeznie a funkciók eléréséhez.
 - Általános folyamatok:
-     - Regisztrálni az oldalra a megfelelő adatok magadásával.
-     - Bejelentkezni az oldalra a regisztráció során megadott megfelelő adatokkal.
-     - Bármikor kilépni az alkalmazásból.
-     - Játék kiválasztása.
-- Pénzfeldobó játék folyamatok:
-	- Tét megtétele.
-	- Tipp módosítása.
-	- Legutóbbi dobások megtekintése.
-	- Tipp elfogadása és részvétel a "sorsolásban".
-- Kockadobó játék folyamatok:
-  - Tét megtétele.
-  - Páros/Páratlan számok tippelése.
-  - Kisebb, egyenlő mint 3 vagy nagyobb mint 3 számok tippelése.
-  - Pontos szám tippelése.
-  - Tipp elfogadása és részvétel a "sorsolásban".
+     	- Regisztrálni az oldalra a megfelelő adatok magadásával.
+     	- Bejelentkezni az oldalra a regisztráció során megadott megfelelő adatokkal.
+     	- Bármikor kilépni az alkalmazásból.
+     	- Játék kiválasztása.
+- Cookie Clicker Simulator:
+  	- Folytonos kattintás után játékon belüli pénzt kap a felhasználó
+  	- Karakter nyitása
+  	- Hanghatások a karakterek nyitása után
 
 ## 4. Követelmények
 
@@ -65,15 +57,14 @@ Az alkalmazás indulását követően a felhasználónak be kell jelentkeznie a 
 | K1 | Bejelentkezési ablak     | A felhasználónak egyes funkciók elérése előtt azonosítania kell magát, mielőtt elérhetné azokat.                                                                                         |
 | K2 | Regisztráció             | A felhasználó itt tudja regisztrálni magát.                                                                                                                                              |
 | K3 | Játékmód választás       | A fehasználó kiválaszthatja, mely játékmódot szeretné játszani.                                                                                                                          |
-| K4 | Pénzfeldobó játék        | A pénzfeldobó játékban a felhasználó megteheti tétjét, hogy a szimulált pénzérme a feje vagy írása mutat felfelé, és az alapján kapja vissza megtett tétjét, amelyet tud módosítani is.  |
-| K5 | Kockadobó játék          | A kockadobó játékban a felhasználó megteheti tétjét, hogy a szimulált dobókocka különböző tulajdonságaira, és az alapján kapja vissza megtett tétjét, amelyet tud módosítani is.         |
+| K4 | Gatcha játék        	| A felhasználó folytonos kattintással játékbeli pénzt szerez, ezekkel karakterek nyithatóak.  |
  
 ### Nemfunkcionális követelmények
 
 | ID | Megnevezés                             | Leírás                                                                                                              |
 |----|----------------------------------------|---------------------------------------------------------------------------------------------------------------------|
 | K6 | Átlátható, könnyen kezelhető felület   | A felületek könnyen használhatóak, átláthatóak legyenek, intuitívak, illetve ne legyenek zsúfoltak.                 |
-| K7 | Tervezési minták használata            | Az alkalmazás forráskódja tartalmazzon legalább 2 tervezési mintát. Mi esetünkben ez a Stratégia és a Command lesz. |
+| K7 | Tervezési minták használata            | Az alkalmazás forráskódja tartalmazzon legalább 2 tervezési mintát. 						    |
 
 ### Támogatott eszközök
 
@@ -89,8 +80,7 @@ Az alkalmazás indulását követően a felhasználónak be kell jelentkeznie a 
 
 ### 5.2 Menühierarchiák
 - Főoldal (Bejelentkezés és Regisztráció)
-- Pénzfeldobó játék
-- Dobókocka játék
+- Gatcha Játék
 
 ## 6. Fizikai környezet
 
@@ -124,12 +114,12 @@ Szerver (Host) gép: Az adatbázis rendszer és a háttérfolyamatokat ellátó 
 
 ## 9. Adatbázis terv
 
-![dbterv](https://github.com/herbakmarcell/gambasim_progtech/assets/128597041/139356a1-df93-4e2a-9172-66dbd2bd8f31)
+![dbterv]
 
 ## 10. Implementációs terv
-A projektet két részre oszlik: a frontendre és a backendre. A frontend Java Swing segítségével készül, míg a backend Java keretrendszerben.
+A projektet két részre oszlik: a frontendre és a backendre. A frontend JavaFX segítségével készül, míg a backend Java keretrendszerben.
 A program kódjában használt nyelv elsősorban az angol.
-A szerver és az adatbázist összekötő csomag  felelős az adatbázis kezeléséért.
+A szerver és az adatbázist összekötő csomag felelős az adatbázis kezeléséért.
 Mind a frontend, mind a backend fejlesztéséhez szükség van a IntelliJ környezet telepítésére és konfigurálására a szükséges eszközökkel és kiegészítőkkel
 együtt.
 ## 11. Tesztterv
@@ -143,14 +133,14 @@ A tesztelés során a szoftver megfelelő működését vizsgáljuk. Amennyiben 
 
 ### Tesztesetek
 
-#### Tesztelés módja: Unit Teszt
+#### Tesztelés módja: Gyakorlati teszt
 
- | Teszteset      | Elvárt eredmény                                                                                            | 
- |----------------|------------------------------------------------------------------------------------------------------------| 
- | Regisztráció   | A felhasználó az adatok megadásával sikeresen regisztrálni tud.                                            |
- | Bejelentkezés  | A felhasználó az adatok megadásával sikeresen be tud jelentkezni.                                          |
- | Tét megtétele  | Ha a felhasználó megfelelő mennyiségű egyenleggel rendelkezik, meg tudja tenni tétjét a megfelelő játékra. |
- | Játék indítása | A játék elindul, és az eredmény és felhasználó tippje alapján közli az eredményt.                          |
+ | Teszteset      	| Elvárt eredmény                                                                                            | 
+ |---------------------	|------------------------------------------------------------------------------------------------------------| 
+ | Regisztráció   	| A felhasználó az adatok megadásával sikeresen regisztrálni tud.                                            |
+ | Bejelentkezés  	| A felhasználó az adatok megadásával sikeresen be tud jelentkezni.                                          |
+ | Játékpénz beszerzése | Ha a felhasználó megfelelő mennyiségű egyenleggel rendelkezik, tud nyitni				     |
+ | Játék indítása 	| A játék elindul, és az eredmény és felhasználó számított képlet alapján kap karaktereket             	     |
 
 ## 12. Telepítési terv
 
