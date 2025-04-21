@@ -13,4 +13,6 @@ module com.gatchasim.gatchasim {
 
     opens com.gatchasim.gatchasim to javafx.fxml;
     exports com.gatchasim.gatchasim;
+    exports com.gatchasim.gatchasim.JavaFX;
+    opens com.gatchasim.gatchasim.JavaFX to javafx.fxml;
 }

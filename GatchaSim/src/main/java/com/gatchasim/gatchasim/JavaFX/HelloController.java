@@ -1,4 +1,4 @@
-package com.gatchasim.gatchasim;
+package com.gatchasim.gatchasim.JavaFX;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
