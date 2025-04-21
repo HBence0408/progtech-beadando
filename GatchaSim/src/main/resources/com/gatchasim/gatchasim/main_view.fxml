@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="402.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gatchasim.gatchasim.JavaFX.MainController">
+   <children>
+      <Separator layoutX="16.0" layoutY="44.0" prefHeight="1.0" prefWidth="604.0" />
+      <Button id="CookieClickerButton" fx:id="CCButton" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#ShowCC" prefHeight="26.0" prefWidth="247.0" text="Cookie Clicker" />
+      <Button id="InventoryButton" fx:id="InventoryButton" layoutX="270.0" layoutY="14.0" mnemonicParsing="false" onAction="#ShowInventory" prefHeight="26.0" prefWidth="247.0" text="Inventory" />
+      <Button id="LogoutButton" fx:id="Logout_Button" layoutX="523.0" layoutY="14.0" mnemonicParsing="false" onAction="#Logout" prefHeight="26.0" prefWidth="97.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
