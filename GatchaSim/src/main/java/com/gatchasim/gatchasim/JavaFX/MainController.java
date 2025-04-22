@@ -3,8 +3,9 @@ package com.gatchasim.gatchasim.JavaFX;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
-    public class MainController {
+public class MainController {
 
         @FXML
         private Button CCButton;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
         @FXML
         private Button Logout_Button;
 
+        private final NavigationService navigationService = new NavigationService();
         @FXML
         private void ShowCC(ActionEvent event) {
             System.out.println("Cookie Clicker page shown.");
@@ -30,7 +32,13 @@ import javafx.scene.control.Button;
         @FXML
         private void Logout(ActionEvent event) {
             System.out.println("Logging out...");
-            // TODO: Kijelentkezés
+
+            // Navigate to login view
+            navigationService.navigateTo("/com/gatchasim/gatchasim/login_view.fxml", "Login");
+
+            // Close current window
+            Stage currentStage = (Stage) Logout_Button.getScene().getWindow();
+            navigationService.closeStage(currentStage);
         }
     }
 
