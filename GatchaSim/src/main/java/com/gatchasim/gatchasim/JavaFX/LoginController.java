@@ -1,13 +1,8 @@
 package com.gatchasim.gatchasim.JavaFX;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class LoginController {
 
@@ -15,15 +10,15 @@ public class LoginController {
     public Button loginButton;
     @FXML
     private TextField usernameField;
-
     @FXML
     private PasswordField passwordField;
-
     @FXML
     private Label messageLabel;
 
     private Runnable onLoginSuccess;
     private Runnable onRegister;
+
+    private final NavigationService navigationService = new NavigationService();
 
     public void setOnLoginSuccess(Runnable onLoginSuccess) {
         this.onLoginSuccess = onLoginSuccess;
@@ -37,25 +32,12 @@ public class LoginController {
     private void handleLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        boolean success = authenticateUser(username, password);
 
-        if (success) {
+        if (authenticateUser(username, password)) {
             Stage stage = (Stage) loginButton.getScene().getWindow();
-            try {
-                // Proper path to your FXML file (update if your folder structure is different)
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gatchasim/gatchasim/main_view.fxml"));
-                Parent root = loader.load();
-                Scene scene = new Scene(root, 632, 402);
-                stage.setScene(scene);
-                stage.setTitle("Main Application");
-                stage.setResizable(true);
-                stage.centerOnScreen();
-            } catch (IOException e) {
-                e.printStackTrace();
-                messageLabel.setText("Failed to load main view.");
-            }
+            navigationService.navigateTo("/com/gatchasim/gatchasim/main_view.fxml", "Alkalmazás");
         } else {
-            messageLabel.setText("Invalid credentials.");
+            messageLabel.setText("Nem megfelelő bejelentkezési adatok.");
         }
     }
 
@@ -65,8 +47,7 @@ public class LoginController {
     }
 
     private boolean authenticateUser(String username, String password) {
-        // Ideiglenesen, Adatbázissal felülírni
+        // Ideiglenesen, adatbázissal felülírni
         return username.equals("admin") && password.equals("password");
     }
-
 }
