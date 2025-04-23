@@ -2,6 +2,6 @@ package com.gatchasim.gatchasim.Database;
 
 import java.sql.SQLException;
 
-public interface ICommand {
-    void execute() throws SQLException;
+public interface IQueryCommand<T> {
+    T execute() throws SQLException;
 }

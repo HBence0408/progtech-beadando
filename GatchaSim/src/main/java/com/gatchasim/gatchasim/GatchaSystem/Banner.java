@@ -1,5 +1,7 @@
 package com.gatchasim.gatchasim.GatchaSystem;
 
+import com.gatchasim.gatchasim.Database.ICommand;
+
 import java.util.List;
 
 public abstract class Banner {
@@ -10,6 +12,10 @@ public abstract class Banner {
     public abstract int GetPullsSinceLast5Star();
 
     public  abstract boolean IsOn5050(); // elvesztette e az utóbbbi fifty fiftyt
+
+    protected ICommand get3starCommand;
+    protected ICommand get4starCommand;
+    protected ICommand get5starCommand;
 
     protected List<ThreeStarItem> threeStarItems; // itt majd adatbázisbó lekérés kell
     protected List<FourStarItem> fourStarItems; // itt majd adatbázisbó lekérés kell

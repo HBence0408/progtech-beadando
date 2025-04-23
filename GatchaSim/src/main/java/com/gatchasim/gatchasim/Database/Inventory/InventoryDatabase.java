@@ -1,4 +1,6 @@
-package com.gatchasim.gatchasim.Database;
+package com.gatchasim.gatchasim.Database.Inventory;
+
+import com.gatchasim.gatchasim.Database.Database;
 
 public class InventoryDatabase  extends Database {
 
