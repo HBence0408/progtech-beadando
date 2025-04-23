@@ -19,13 +19,11 @@ public class MainController {
         private final NavigationService navigationService = new NavigationService();
         @FXML
         private void ShowCC(ActionEvent event) {
-            System.out.println("Cookie Clicker page shown.");
             // TODO: Cookie Clicker megoldás
         }
 
         @FXML
         private void ShowInventory(ActionEvent event) {
-            System.out.println("Inventory page shown.");
             // TODO: Inventory megoldás
         }
 
@@ -33,10 +31,8 @@ public class MainController {
         private void Logout(ActionEvent event) {
             System.out.println("Logging out...");
 
-            // Navigate to login view
             navigationService.navigateTo("/com/gatchasim/gatchasim/login_view.fxml", "Login");
 
-            // Close current window
             Stage currentStage = (Stage) Logout_Button.getScene().getWindow();
             navigationService.closeStage(currentStage);
         }
