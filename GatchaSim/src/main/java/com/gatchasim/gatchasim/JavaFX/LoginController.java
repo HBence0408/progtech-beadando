@@ -20,6 +20,7 @@ public class LoginController {
 
     private final NavigationService navigationService = new NavigationService();
 
+
     public void setOnLoginSuccess(Runnable onLoginSuccess) {
         this.onLoginSuccess = onLoginSuccess;
     }
@@ -27,15 +28,16 @@ public class LoginController {
     public void setOnRegister(Runnable onRegister) {
         this.onRegister = onRegister;
     }
-
+    //Az előbbi két metódus az adatbázis összekötés után lesz használva, NE NYÚLJ HOZZÁ ADDIG, köszi
     @FXML
     private void handleLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
         if (authenticateUser(username, password)) {
-            Stage stage = (Stage) loginButton.getScene().getWindow();
+            Stage currentStage = (Stage) loginButton.getScene().getWindow();
             navigationService.navigateTo("/com/gatchasim/gatchasim/main_view.fxml", "Alkalmazás");
+            navigationService.closeStage(currentStage);
         } else {
             messageLabel.setText("Nem megfelelő bejelentkezési adatok.");
         }
@@ -43,7 +45,9 @@ public class LoginController {
 
     @FXML
     private void handleRegister() {
-        if (onRegister != null) onRegister.run();
+        Stage currentStage = (Stage) loginButton.getScene().getWindow();
+        navigationService.navigateTo("/com/gatchasim/gatchasim/register_view.fxml", "Regisztráció");
+        navigationService.closeStage(currentStage);
     }
 
     private boolean authenticateUser(String username, String password) {

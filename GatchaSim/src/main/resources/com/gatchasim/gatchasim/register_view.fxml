@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="10.0" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gatchasim.gatchasim.JavaFX.RegisterController">
+    <TextField fx:id="usernameField" maxWidth="Infinity" promptText="Username" />
+    <PasswordField fx:id="passwordField" maxWidth="Infinity" promptText="Password" />
+    <PasswordField fx:id="confirmPasswordField" maxWidth="Infinity" promptText="Confirm Password" />
+    <Button fx:id="registerButton" maxWidth="Infinity" onAction="#handleRegister" text="Register" />
+    <Button maxWidth="Infinity" onAction="#goBackToLogin" text="Back to Login" />
+    <Label fx:id="messageLabel" maxWidth="Infinity" wrapText="true" />
+</VBox>
+

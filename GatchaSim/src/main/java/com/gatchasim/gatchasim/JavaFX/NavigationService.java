@@ -19,7 +19,8 @@ public class NavigationService {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace(); // You might want to log this in a real app
+            e.printStackTrace(); //Végső verzióbol ki kell szedni!!!!!!!!
+            FileLogger.logError(e);
         }
     }
 
