@@ -29,9 +29,9 @@ public class MainController {
 
         @FXML
         private void Logout(ActionEvent event) {
-            System.out.println("Logging out...");
+            System.out.println("Kijelentkezés");
 
-            navigationService.navigateTo("/com/gatchasim/gatchasim/login_view.fxml", "Login");
+            navigationService.navigateTo("/com/gatchasim/gatchasim/login_view.fxml", "Bejelentkezés");
 
             Stage currentStage = (Stage) Logout_Button.getScene().getWindow();
             navigationService.closeStage(currentStage);

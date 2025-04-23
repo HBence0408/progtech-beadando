@@ -1,5 +1,6 @@
 package com.gatchasim.gatchasim.JavaFX;
 
+import com.gatchasim.gatchasim.FileLogger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

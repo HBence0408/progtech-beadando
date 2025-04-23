@@ -1,4 +1,4 @@
-package com.gatchasim.gatchasim.JavaFX;
+package com.gatchasim.gatchasim;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,9 +24,9 @@ public class FileLogger {
 
         try (PrintWriter writer = new PrintWriter(logFile)) {
             e.printStackTrace(writer);
-            System.out.println("Hiba fileba írva fájl hely: " + logFile.getAbsolutePath());
+            System.out.println("Hiba fileba íráskor fájl hely: " + logFile.getAbsolutePath());
         } catch (FileNotFoundException ex) {
-            System.err.println("Hiba a Logolás során (Mit rontottál el te ember???): " + ex.getMessage());
+            System.err.println("Hiba a Logolás során: " + ex.getMessage());
         }
     }
 }

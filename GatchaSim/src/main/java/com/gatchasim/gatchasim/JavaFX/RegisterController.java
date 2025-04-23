@@ -22,12 +22,12 @@ public class RegisterController {
         String confirmPassword = confirmPasswordField.getText();
 
         if (!password.equals(confirmPassword)) {
-            messageLabel.setText("Passwords do not match.");
+            messageLabel.setText("A jelszavak nem egyeznek!");
             return;
         } //Metódus módosítása ha megvan az adatbázis
 
         //TODO: Regisztrációs logika megoldása  (szükséges az Adatbázis felépítés hozzá majd megcsinálom ha az is kész van)
-        messageLabel.setText("Registration successful!");
+        messageLabel.setText("Sikeres Regisztráció");
 
         navigationService.navigateTo("/com/gatchasim/gatchasim/login_view.fxml", "Bejelentkezés!");
         Stage currentStage = (Stage) usernameField.getScene().getWindow();
