@@ -20,7 +20,7 @@ public class UserDatabase extends Database {
     public boolean addUser(String username, String password) {
         String sql = "INSERT INTO `user` (username, password) VALUES (?, ?)";
 
-        try (Connection conn = com.gatchasim.gatchasim.GatchaSystem.Database.getConnection();
+        try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, username);
@@ -38,11 +38,28 @@ public class UserDatabase extends Database {
     public boolean loginUser(String username, String password) {
         String sql = "SELECT * FROM `user` WHERE username = ? AND password = ?";
 
-        try (Connection conn = com.gatchasim.gatchasim.GatchaSystem.Database.getConnection();
+        try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, username);
             stmt.setString(2, password);
+
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean isUsernameTaken(String username) {
+        String sql = "SELECT * FROM user WHERE username = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, username);
 
             ResultSet rs = stmt.executeQuery();
             return rs.next();
