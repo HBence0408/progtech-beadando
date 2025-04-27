@@ -1,10 +1,13 @@
 package com.gatchasim.gatchasim.JavaFX;
 
+import com.gatchasim.gatchasim.Database.User.AddUserCommand;
+import com.gatchasim.gatchasim.Database.User.UserDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+import java.sql.SQLException;
 
 public class RegisterController {
 
@@ -24,14 +27,27 @@ public class RegisterController {
         if (!password.equals(confirmPassword)) {
             messageLabel.setText("A jelszavak nem egyeznek!");
             return;
-        } //Metódus módosítása ha megvan az adatbázis
+        }
 
-        //TODO: Regisztrációs logika megoldása  (szükséges az Adatbázis felépítés hozzá majd megcsinálom ha az is kész van)
-        messageLabel.setText("Sikeres Regisztráció");
+        if (UserDatabase.getInstance().isUsernameTaken(username)) {
+            messageLabel.setText("Ez a felhasználónév már létezik!");
+            return;
+        }
 
-        navigationService.navigateTo("/com/gatchasim/gatchasim/login_view.fxml", "Bejelentkezés!");
-        Stage currentStage = (Stage) usernameField.getScene().getWindow();
-        navigationService.closeStage(currentStage);
+        try {
+            AddUserCommand addUserCommand = new AddUserCommand(username, password);
+            addUserCommand.execute();
+
+            messageLabel.setText("Sikeres Regisztráció!");
+
+            navigationService.navigateTo("/com/gatchasim/gatchasim/login_view.fxml", "Bejelentkezés!");
+            Stage currentStage = (Stage) usernameField.getScene().getWindow();
+            navigationService.closeStage(currentStage);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            messageLabel.setText("Hiba történt a regisztráció során!");
+        }
     }
 
     @FXML
