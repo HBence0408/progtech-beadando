@@ -6,11 +6,12 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class FileLogger {
+public class FileLogger implements LogObserver {
 
     private static final String LOG_DIRECTORY = "logs";
 
-    public static void logError(Exception e) {
+    @Override
+    public void onError(Exception e) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM_dd_HH_mm");
         String timestamp = dateFormat.format(new Date());
         String fileName = "ErrorLog_" + timestamp + ".txt";
