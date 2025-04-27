@@ -1,5 +1,6 @@
 package com.gatchasim.gatchasim.JavaFX;
 
+import com.gatchasim.gatchasim.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,7 +21,7 @@ public class NavigationService {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace(); //Végső verzióbol ki kell szedni!!!!!!!!
-            FileLogger.logError(e);
+            Logger.getInstance().logError(e);
         }
     }
 

@@ -31,7 +31,7 @@
               prefHeight="26.0" />
 
       <Button fx:id="Logout_Button"
-              text="Logout"
+              text="Kijelentkezés"
               onAction="#Logout"
               prefWidth="100.0"
               prefHeight="26.0"
