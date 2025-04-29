@@ -10,10 +10,14 @@ Szórakoztató, szerencsejáték alapú program, amelynek célja a Gatcha addikc
 		  -  Herbák Marcell
      
 ### 2.2 Projektmunkások és felelőségek:
-   * Frontend és backend:
+   * Frontend:
      	- Balogh István
-     	- Pál Tamás
+	- Pál Tamás
+   * Backend:
+	- Pál Tamás
      	- Hajdu Bence
+   * Adatbázis Menedszment:
+	- Pál Tamás
    * Tesztelés:
      	- Balogh István
      	- Pál Tamás
@@ -24,7 +28,7 @@ Szórakoztató, szerencsejáték alapú program, amelynek célja a Gatcha addikc
 |Funkció                  | Feladat                                | Prioritás | Becslés (nap) | Aktuális becslés (nap) | Eltelt idő (nap) | Becsült idő (nap) |
 |-------------------------|----------------------------------------|-----------|---------------|------------------------|------------------|---------------------|
 |Rendszerterv             |Megírás                                 |         1 |             1 |                      1 |                1 |                   1 |
-|Program                  |Prototípus elkészítése                  |         2 |             3 |                      3 |                2 |                   1 |
+|Program                  |Prototípus elkészítése                  |         2 |             3 |                      6 |                3 |                   1 |
 |Program                  |Tesztelés                               |         3 |             1 |                      1 |                1 |                   1 |
 
 ### 2.4 Mérföldkövek:
@@ -109,7 +113,7 @@ Szerver (Host) gép: Az adatbázis rendszer és a háttérfolyamatokat ellátó 
 
 ### A program elérése, kezelése
 
-- Szükséges Swing, XAMPP, ami az installáció esetén egy szervergép.
+- Szükséges IntelliJ, XAMPP, ami az installáció esetén egy szervergép.
 
 
 ## 9. Adatbázis terv
@@ -155,7 +159,7 @@ A tesztelés során a szoftver megfelelő működését vizsgáljuk. Amennyiben 
    - Szükséges telepíteni az XAMPP nevű szoftvert.
    - Az adatbázis konfigurálása az XAMPP segítségével történik.
  - A backend és frontend konfigurálásához szükség van az  IntelliJ fejlesztői környezetre.
-   -  Szükséges csomagok a Java.
+   -  Szükséges csomagok a Java és a JavaFX.
  - A fejlesztők számára az alkalmazás szabadon konfigurálható, fejleszthető.
  - Abban az esetben, ha a szükséges beállítások megtörténtek, a felhasználók számára az alkalmazás futtatható
 
