@@ -6,7 +6,7 @@
 <VBox alignment="CENTER" spacing="10.0" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gatchasim.gatchasim.JavaFX.RegisterController">
     <TextField fx:id="usernameField" maxWidth="Infinity" promptText="Felhasználó" />
     <PasswordField fx:id="passwordField" maxWidth="Infinity" promptText="Jelszó" />
-    <PasswordField fx:id="confirmPasswordField" maxWidth="Infinity" promptText="Jelszó Megerősítés" />
+    <PasswordField fx:id="confirmPasswordField" maxWidth="Infinity" promptText="Jelszó Újra" />
     <Button fx:id="registerButton" maxWidth="Infinity" onAction="#handleRegister" text="Regisztráció" />
     <Button maxWidth="Infinity" onAction="#goBackToLogin" text="Vissza a Bejelentkezésre" />
     <Label fx:id="messageLabel" maxWidth="Infinity" wrapText="true" />

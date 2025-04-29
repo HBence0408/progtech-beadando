@@ -20,8 +20,16 @@ public class NavigationService {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace(); //Végső verzióbol ki kell szedni!!!!!!!!
+            Logger.getInstance().logError("IOException Történt", e);
+            System.exit(0);
+        } catch (IllegalStateException e) {
+            Logger.getInstance().logError("IllegalStateException (Elírtál valamit az FXML Path-ban ez esetben)", e);
+            System.exit(0);
+        } catch (Exception e) {
+            String exceptionType = e.getClass().getName();
+            System.out.println("Valami Nem kóser: " + exceptionType);
             Logger.getInstance().logError(e);
+            System.exit(0);
         }
     }
 
@@ -31,4 +39,5 @@ public class NavigationService {
         }
     }
 }
+
 

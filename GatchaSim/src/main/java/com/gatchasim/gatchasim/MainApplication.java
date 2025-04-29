@@ -17,6 +17,9 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
+        Logger logger = Logger.getInstance();
+        logger.addObserver(new ConsoleLogger());
+        logger.addObserver(new FileLogger());
         launch(args);
     }
 }

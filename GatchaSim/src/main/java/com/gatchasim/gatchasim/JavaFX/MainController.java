@@ -28,6 +28,11 @@ public class MainController {
         }
 
         @FXML
+        private void ShowBanner(ActionEvent event) {
+        // TODO: Bannerek Megjelenítésének megoldása
+        }
+
+        @FXML
         private void Logout(ActionEvent event) {
             System.out.println("Kijelentkezés");
 
