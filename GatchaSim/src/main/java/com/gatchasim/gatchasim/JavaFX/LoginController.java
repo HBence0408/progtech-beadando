@@ -1,5 +1,9 @@
 package com.gatchasim.gatchasim.JavaFX;
 
+import com.gatchasim.gatchasim.Database.CommandInvoker;
+import com.gatchasim.gatchasim.Database.User.LoggedInUser;
+import com.gatchasim.gatchasim.Database.User.LoginUserCommand;
+import com.gatchasim.gatchasim.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -15,20 +19,9 @@ public class LoginController {
     @FXML
     private Label messageLabel;
 
-    private Runnable onLoginSuccess;
-    private Runnable onRegister;
-
     private final NavigationService navigationService = new NavigationService();
 
 
-    public void setOnLoginSuccess(Runnable onLoginSuccess) {
-        this.onLoginSuccess = onLoginSuccess;
-    }
-
-    public void setOnRegister(Runnable onRegister) {
-        this.onRegister = onRegister;
-    }
-    //Az előbbi két metódus az adatbázis összekötés után lesz használva, NE NYÚLJ HOZZÁ ADDIG, köszi
     @FXML
     private void handleLogin() {
         String username = usernameField.getText();
@@ -51,7 +44,21 @@ public class LoginController {
     }
 
     private boolean authenticateUser(String username, String password) {
-        // Ideiglenesen, adatbázissal felülírni
-        return username.equals("admin") && password.equals("password");
+        try {
+            CommandInvoker invoker = new CommandInvoker();
+            LoginUserCommand loginCommand = new LoginUserCommand(username, password);
+            boolean success = invoker.run(loginCommand);
+
+            if (success) {
+                LoggedInUser.setUser(username);
+                return true;
+            }
+        } catch (Exception e) {
+            String exceptionType = e.getClass().getName();
+            System.out.println("Valami Nem kóser: " + exceptionType);
+            Logger.getInstance().logError(e);
+            System.exit(0);
+        }
+        return false;
     }
 }

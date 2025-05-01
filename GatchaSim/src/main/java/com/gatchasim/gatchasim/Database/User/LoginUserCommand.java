@@ -1,10 +1,10 @@
 package com.gatchasim.gatchasim.Database.User;
 
-import com.gatchasim.gatchasim.Database.ICommand;
+import com.gatchasim.gatchasim.Database.IReturningCommand;
 
 import java.sql.SQLException;
 
-public class LoginUserCommand implements ICommand {
+public class LoginUserCommand implements IReturningCommand<Boolean> {
 
     private final String username;
     private final String password;
@@ -14,7 +14,7 @@ public class LoginUserCommand implements ICommand {
         this.password = password;
     }
     @Override
-    public void execute() throws SQLException {
-        UserDatabase.getInstance().loginUser(username, password);
+    public Boolean execute() throws SQLException {
+        return UserDatabase.getInstance().loginUser(username, password);
     }
 }
