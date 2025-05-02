@@ -41,7 +41,7 @@ Ha valami olyat csinálsz amiben történhetnek hibák, akkor legyél kedves rak
 
         try {
             Valami ami elcsesződhet
-        } catch (Várható Exception e) {
+        } catch (VárhatóException e) {
             Logger.getInstance().logError("Üzenet", e); vagy csak szimplán Logger.getInstance().logError();
             System.exit(0); A rendszer kilép, hogy ne történjen további gond hogyha futna a rendszer
                             akkor szükséges ha olyan hibát dob amit nem tud a program lenyelni)
