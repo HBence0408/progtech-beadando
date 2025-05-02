@@ -6,6 +6,3 @@ public interface GatchaItem {
 
 }
 
-
-//későbbiekben lehet decorátort is használni egyenlőre inharitence
-// becsomagloni hogy 3star 4star vagy 5star
