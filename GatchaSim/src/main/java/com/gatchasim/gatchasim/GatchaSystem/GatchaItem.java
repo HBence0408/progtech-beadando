@@ -1,12 +1,9 @@
 package com.gatchasim.gatchasim.GatchaSystem;
 
-public abstract class GatchaItem {
+public interface GatchaItem {
 
+    public int GetMultiplyer();
 
-    @Override
-    public String toString() {
-        return "gatcha item";
-    }
 }
 
 

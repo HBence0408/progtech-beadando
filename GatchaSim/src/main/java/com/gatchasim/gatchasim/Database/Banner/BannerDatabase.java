@@ -31,4 +31,6 @@ public class BannerDatabase extends Database {
         // adott táblából a 5 csillagosak lekérése
         return null;
     }
+
+
 }
