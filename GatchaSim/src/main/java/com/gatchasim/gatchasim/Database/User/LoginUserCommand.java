@@ -1,10 +1,10 @@
 package com.gatchasim.gatchasim.Database.User;
 
-import com.gatchasim.gatchasim.Database.IReturningCommand;
+import com.gatchasim.gatchasim.Database.IQueryCommand;
 
 import java.sql.SQLException;
 
-public class LoginUserCommand implements IReturningCommand<Boolean> {
+public class LoginUserCommand implements IQueryCommand<Boolean> {
 
     private final String username;
     private final String password;
