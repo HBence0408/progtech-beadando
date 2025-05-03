@@ -35,12 +35,12 @@ public class MainController {
         @FXML
         private void ShowInventory(ActionEvent event) {
             // TODO: Inventory megoldás
-            /*
+
             navigationService.navigateTo("/com/gatchasim/gatchasim/inventory_view.fxml", "Inventory");
 
             Stage currentStage = (Stage) InventoryButton.getScene().getWindow();
             navigationService.closeStage(currentStage);
-             */
+
         }
 
         @FXML

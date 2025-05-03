@@ -2,9 +2,14 @@ package com.gatchasim.gatchasim.Database.Inventory;
 
 import com.gatchasim.gatchasim.Database.Database;
 
-public class InventoryDatabase  extends Database {
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class InventoryDatabase extends Database {
 
     private static InventoryDatabase instance;
+
     public static InventoryDatabase getInstance() {
         if (instance == null) {
             instance = new InventoryDatabase();
@@ -12,4 +17,61 @@ public class InventoryDatabase  extends Database {
         return instance;
     }
 
+    public int addItemToInventory(int userId, int itemId, int quantity) throws SQLException {
+        String sql = "INSERT INTO inventory (user_id, item_id, quantity) VALUES (?, ?, ?)";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setInt(1, userId);
+            stmt.setInt(2, itemId);
+            stmt.setInt(3, quantity);
+            stmt.executeUpdate();
+
+            try (ResultSet keys = stmt.getGeneratedKeys()) {
+                if (keys.next()) {
+                    return keys.getInt(1);
+                } else {
+                    throw new SQLException("Inventory ID nem generálódott.");
+                }
+            }
+        }
+    }
+
+    public void equipItem(int userId, int inventoryId) throws SQLException {
+        String sql = "INSERT INTO equiped_item (user_id, equiped_item_id) VALUES (?, ?)";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            stmt.setInt(2, inventoryId);
+            stmt.executeUpdate();
+        }
+    }
+    public List<InventoryItem> getUserInventory(String username) throws SQLException {
+        List<InventoryItem> items = new ArrayList<>();
+
+        String sql = "SELECT inventory.id, items.name, inventory.quantity " +
+                "FROM users " +
+                "JOIN inventory ON users.id = inventory.user_id " +
+                "JOIN items ON inventory.item_id = items.id " +
+                "WHERE users.username = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                InventoryItem item = new InventoryItem(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getInt("quantity")
+                );
+                items.add(item);
+            }
+        }
+
+        return items;
+    }
 }
