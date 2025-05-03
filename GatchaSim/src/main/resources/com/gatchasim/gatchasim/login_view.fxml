@@ -3,10 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="10.0" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gatchasim.gatchasim.JavaFX.LoginController">
+<VBox alignment="CENTER" prefHeight="320.0" prefWidth="320.0" spacing="10.0" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gatchasim.gatchasim.JavaFX.LoginController">
     <TextField fx:id="usernameField" maxWidth="Infinity" promptText="Felhasználó" VBox.vgrow="NEVER" />
     <PasswordField fx:id="passwordField" maxWidth="Infinity" promptText="Jelszó" VBox.vgrow="NEVER" />
     <Button fx:id="loginButton" maxWidth="Infinity" onAction="#handleLogin" text="Bejelentkezés" />
     <Button maxWidth="Infinity" onAction="#handleRegister" text="Regisztráció" />
-    <Label fx:id="messageLabel" maxWidth="Infinity" wrapText="true" />
+    <Label fx:id="messageLabel" maxWidth="Infinity" textAlignment="CENTER" wrapText="true" />
 </VBox>

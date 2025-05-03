@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.gatchasim.gatchasim.JavaFX.InventoryViewController">
+
+    <center>
+        <VBox spacing="10" alignment="CENTER" style="-fx-padding: 20;">
+            <ListView fx:id="inventoryListView" prefHeight="200" prefWidth="300"/>
+            <Button text="Equip Item" fx:id="equipButton" onAction="#handleEquipItem"/>
+            <Label fx:id="messageLabel"/>
+            <Button text="Vissza a főmenübe" onAction="#handleBackToMenu" fx:id="BackToMenuButton"/>
+        </VBox>
+    </center>
+</BorderPane>
