@@ -24,17 +24,14 @@ public class MainController {
         @FXML
         private void ShowCC(ActionEvent event) {
             // TODO: Cookie Clicker megoldás
-            /*
-            navigationService.navigateTo("/com/gatchasim/gatchasim/clicker_view.fxml", "Cookie Clicker");
+            navigationService.navigateTo("/com/gatchasim/gatchasim/cc_view.fxml", "Cookie Clicker");
 
             Stage currentStage = (Stage) CCButton.getScene().getWindow();
             navigationService.closeStage(currentStage);
-             */
         }
 
         @FXML
         private void ShowInventory(ActionEvent event) {
-            // TODO: Inventory megoldás
 
             navigationService.navigateTo("/com/gatchasim/gatchasim/inventory_view.fxml", "Inventory");
 

@@ -100,6 +100,38 @@ public class UserDatabase extends Database {
             }
         }
     }
+    public void updateCoinsForUser(String username, int coins) {
+        String sql = "UPDATE users SET coins = ? WHERE username = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, coins);
+            stmt.setString(2, username);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public int getCoinsForUser(String username) {
+        String sql = "SELECT coins FROM users WHERE username = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("coins");
+            } else {
+                throw new SQLException("Felhasználó nem található.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }
 
 
