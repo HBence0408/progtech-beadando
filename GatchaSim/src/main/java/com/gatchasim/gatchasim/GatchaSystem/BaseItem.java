@@ -12,6 +12,11 @@ public class BaseItem implements GatchaItem {
     @Override
     public String GetName() { return name; }
 
+    public BaseItem(int multiplyer, String name) {
+        this.multiplyer = multiplyer;
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "gatcha item";
