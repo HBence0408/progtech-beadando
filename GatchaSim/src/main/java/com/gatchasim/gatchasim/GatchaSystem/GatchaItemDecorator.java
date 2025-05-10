@@ -14,6 +14,9 @@ public abstract class GatchaItemDecorator implements GatchaItem {
     }
 
     @Override
+    public String GetName() { return gatchaItem.GetName(); }
+
+    @Override
     public String toString() {
         return gatchaItem.toString();
     }
