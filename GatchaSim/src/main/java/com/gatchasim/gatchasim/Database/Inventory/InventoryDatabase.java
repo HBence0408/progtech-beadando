@@ -38,13 +38,29 @@ public class InventoryDatabase extends Database {
     }
 
     public void equipItem(int userId, int inventoryId) throws SQLException {
-        String sql = "INSERT INTO equiped_item (user_id, equiped_item_id) VALUES (?, ?)";
+        String checkSql = "SELECT * FROM equiped_item WHERE user_id = ?";
+
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(checkSql)) {
 
             stmt.setInt(1, userId);
-            stmt.setInt(2, inventoryId);
-            stmt.executeUpdate();
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                String deleteSql = "DELETE FROM equiped_item WHERE user_id = ?";
+                try (PreparedStatement deleteStmt = conn.prepareStatement(deleteSql)) {
+                    deleteStmt.setInt(1, userId);
+                    deleteStmt.executeUpdate();
+                }
+            }
+
+            String insertSql = "INSERT INTO equiped_item (user_id, equiped_item_id) VALUES (?, ?)";
+            try (PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
+                insertStmt.setInt(1, userId);
+                insertStmt.setInt(2, inventoryId);
+                insertStmt.executeUpdate();
+            }
         }
     }
     public List<InventoryItem> getUserInventory(String username) throws SQLException {

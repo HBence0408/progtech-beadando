@@ -20,6 +20,7 @@ public class BannerDatabase extends Database {
 
     public List<GatchaItem> getItems(String rarity, String banner){
         // adott táblából a rarity (ritkaság) alapján csillagosak lekérése
+        // Ide kell betenni azt hogy amikor az adatbázisból lekérdeztem az Itemet abból csinálok egy BaseItem példányt
         return null;
     }
 
