@@ -44,5 +44,6 @@ public class GatchaSystem {
     public List<GatchaItem> TenPull(){
         return null;
     }
+    //TODO: 10pull
 
 }
