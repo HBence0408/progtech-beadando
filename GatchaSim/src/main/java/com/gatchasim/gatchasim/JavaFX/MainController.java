@@ -43,12 +43,10 @@ public class MainController {
         @FXML
         private void ShowBanner(ActionEvent event) {
             // TODO: Bannerek Megjelenítésének megoldása
-            /*
             navigationService.navigateTo("/com/gatchasim/gatchasim/banner_view.fxml", "Bannerek");
 
             Stage currentStage = (Stage) BannerButton.getScene().getWindow();
             navigationService.closeStage(currentStage);
-             */
         }
 
         @FXML

@@ -4,5 +4,6 @@ public interface GatchaItem {
 
     public int GetMultiplyer();
     public String GetName();
+    public int getId();
 }
 

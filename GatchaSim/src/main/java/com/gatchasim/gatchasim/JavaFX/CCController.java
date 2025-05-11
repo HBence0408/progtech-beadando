@@ -76,13 +76,13 @@ public class CCController {
     private String getImagePathForRarity(int rarity) {
         switch (rarity) {
             case 3:
-                return "/com/gatchasim/gatchasim/three_star.png"; // Placeholder image path for rarity 3
+                return "/com/gatchasim/gatchasim/three_star.png";
             case 4:
-                return "/com/gatchasim/gatchasim/four_star.png"; // Placeholder image path for rarity 4
+                return "/com/gatchasim/gatchasim/four_star.png";
             case 5:
                 return "/com/gatchasim/gatchasim/five_star.png";
             default:
-                return "/com/gatchasim/gatchasim/PlaceHolder.jpg"; // Default image path
+                return "/com/gatchasim/gatchasim/PlaceHolder.jpg";
         }
     }
 
