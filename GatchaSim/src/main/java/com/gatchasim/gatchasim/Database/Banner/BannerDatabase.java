@@ -59,6 +59,7 @@ public class BannerDatabase extends Database {
                 int multiplier = rs.getInt("multiplier");
                 BaseItem baseItem = new BaseItem(id, multiplier, name);
                 result.add(baseItem);
+
             }
 
             rs.close();
