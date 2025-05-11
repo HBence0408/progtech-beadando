@@ -5,8 +5,8 @@ import com.gatchasim.gatchasim.Database.IQueryCommand;
 public class GetCoinsForUserCommand implements IQueryCommand<Integer> {
     private final String username;
 
-    public GetCoinsForUserCommand(String username) {
-        this.username = username;
+    public GetCoinsForUserCommand() {
+        this.username = LoggedInUser.getUsername();
     }
 
     @Override

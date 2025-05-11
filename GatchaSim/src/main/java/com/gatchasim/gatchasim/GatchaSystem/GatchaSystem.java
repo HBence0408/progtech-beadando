@@ -1,6 +1,9 @@
 package com.gatchasim.gatchasim.GatchaSystem;
 
 
+import com.gatchasim.gatchasim.Database.User.GetCoinsForUserCommand;
+import com.gatchasim.gatchasim.Database.User.UpdateCoinsForUserCommand;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -19,6 +22,10 @@ public class GatchaSystem {
     }
 
     private Banner currentBanner;
+    private GetCoinsForUserCommand getCoins = new GetCoinsForUserCommand();
+    private UpdateCoinsForUserCommand updateCoins;
+
+    private int price = 10;
 
     public void setCurrentBanner(Banner banner) {
         this.currentBanner = banner;
@@ -29,6 +36,14 @@ public class GatchaSystem {
     }
 
     public GatchaItem Pull(){
+
+        int coins = getCoins.execute();
+
+        if (coins < price) {
+            throw new NotEnoughCoinToPull();
+        }
+
+        updateCoins = new UpdateCoinsForUserCommand(coins - price);
 
         int num = rnd.nextInt(101);
         int fiveStarChance = 1;

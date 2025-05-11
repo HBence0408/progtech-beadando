@@ -6,8 +6,8 @@ public class UpdateCoinsForUserCommand implements IQueryCommand<Void> {
     private final String username;
     private final int coins;
 
-    public UpdateCoinsForUserCommand(String username, int coins) {
-        this.username = username;
+    public UpdateCoinsForUserCommand( int coins) {
+        this.username = LoggedInUser.getUsername();
         this.coins = coins;
     }
 

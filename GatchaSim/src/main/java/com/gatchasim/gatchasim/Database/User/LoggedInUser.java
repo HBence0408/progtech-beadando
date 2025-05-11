@@ -21,3 +21,6 @@ public class LoggedInUser {
 }
 //Ez tárolja hogy ki van bejelentkezve, később lehet átírom hogy ID alapján tároljuk ne felh név alapján,
 //Illetve később még ez majd használható az Inventory megjelenítéshez
+
+
+//TODO ez lehetne singleton
