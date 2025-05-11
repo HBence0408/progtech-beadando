@@ -48,7 +48,22 @@ public class BannerDatabase extends Database {
                 int multiplier = rs.getInt("multiplier");
 
                 BaseItem baseItem = new BaseItem(multiplier, name);
-                result.add(baseItem);
+
+                switch (rarity) {
+                    case 3:
+                        ThreeStarItem star3 = new ThreeStarItem(baseItem);
+                        result.add(star3);
+                        break;
+                    case 4:
+                        ThreeStarItem star4 = new ThreeStarItem(baseItem);
+                        result.add(star4);
+                        break;
+                    case 5:
+                        ThreeStarItem star5 = new ThreeStarItem(baseItem);
+                        result.add(star5);
+                        break;
+                }
+
             }
 
             rs.close();
