@@ -60,6 +60,7 @@ public class Banner {
         List<GatchaItem> items = get4starCommand.execute();
         GatchaItem item = items.get(rnd.nextInt(items.size()));
         item = new FourStarItem(item);
+        pullsSinceLast4Star = 0;
         return (FourStarItem) item;
     }
 
@@ -67,6 +68,7 @@ public class Banner {
         List<GatchaItem> items = get5starCommand.execute();
         GatchaItem item = items.get(rnd.nextInt(items.size()));
         item = new FiveStarItem(item);
+        pullsSinceLast5Star = 0;
         return (FiveStarItem) item;
         // TODO: 50 50
     }
