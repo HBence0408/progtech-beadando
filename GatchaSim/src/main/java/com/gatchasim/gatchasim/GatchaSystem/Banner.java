@@ -39,7 +39,9 @@ public class Banner {
     protected GetItemsCommand get4starCommand;
     protected GetItemsCommand get5starCommand;
 
+
     public Banner(Integer id) {
+
         banner_id = id;
 
         get3starCommand = new GetItemsCommand(3, banner_id);

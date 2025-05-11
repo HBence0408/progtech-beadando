@@ -7,11 +7,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import java.util.List;
 
 public class BannerDatabase extends Database {
@@ -25,12 +27,17 @@ public class BannerDatabase extends Database {
      }
 
     public List<GatchaItem> getItems(Integer rarity, Integer banner){
+
+         // adott táblából a rarity (ritkaság) alapján csillagosak lekérése
+
         List<GatchaItem> result = new ArrayList<>();
 
         try {
             Connection conn = getConnection();
             PreparedStatement stmt = conn.prepareStatement(
+
                     "SELECT i.id, i.name, i.multiplier " +
+
                             "FROM banner b " +
                             "JOIN items i ON " +
                             "    (CASE ? " +

@@ -14,6 +14,7 @@ public class GetItemsCommand implements IQueryCommand<List<GatchaItem>> {
     private final Integer banner;
 
     public  GetItemsCommand(Integer rarity, Integer banner) {
+
             this.rarity = rarity;
             this.banner = banner;
         }
