@@ -63,6 +63,7 @@ public class InventoryDatabase extends Database {
             }
         }
     }
+
     public List<InventoryItem> getUserInventory(String username) throws SQLException {
         List<InventoryItem> items = new ArrayList<>();
 
@@ -89,5 +90,44 @@ public class InventoryDatabase extends Database {
         }
 
         return items;
+    }
+
+    public int getEquippedItemMultiplier(int userId) throws SQLException {
+        String sql = "SELECT items.multiplier FROM equiped_item " +
+                "JOIN inventory ON equiped_item.equiped_item_id = inventory.id " +
+                "JOIN items ON inventory.item_id = items.id " +
+                "WHERE equiped_item.user_id = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("multiplier");
+            } else {
+                throw new SQLException("No equipped item found for this user!");
+            }
+        }
+    }
+    public int getEquippedItemRarity(int userId) throws SQLException {
+        String sql = "SELECT items.rarity " +
+                "FROM equiped_item " +
+                "JOIN inventory ON equiped_item.equiped_item_id = inventory.id " +
+                "JOIN items ON inventory.item_id = items.id " +
+                "WHERE equiped_item.user_id = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("rarity");
+            } else {
+                throw new SQLException("No equipped item found for user " + userId);
+            }
+        }
     }
 }
