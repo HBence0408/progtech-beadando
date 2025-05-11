@@ -44,7 +44,7 @@ public class GatchaSystem {
         }
 
         updateCoins = new UpdateCoinsForUserCommand(coins - price);
-
+        updateCoins.execute();
         int num = rnd.nextInt(101);
         int fiveStarChance = 1;
         int fourStarChance = 20;
@@ -52,7 +52,7 @@ public class GatchaSystem {
         if (currentBanner.GetPullsSinceLast5Star() > 70){
             fiveStarChance = 1 + (currentBanner.GetPullsSinceLast5Star() - 70) * 5;
         }
-        if (currentBanner.GetPullsSinceLast4Star() >= 10){
+        if (currentBanner.GetPullsSinceLast4Star() >= 9){
             fourStarChance = 100;
         }
 

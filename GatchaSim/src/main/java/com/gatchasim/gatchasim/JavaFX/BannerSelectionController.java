@@ -1,12 +1,15 @@
 package com.gatchasim.gatchasim.JavaFX;
 
 import com.gatchasim.gatchasim.Database.Banner.BannerDatabase;
+import com.gatchasim.gatchasim.Database.Banner.GetItemsCommand;
 import com.gatchasim.gatchasim.Database.Inventory.InventoryDatabase;
+import com.gatchasim.gatchasim.Database.User.GetCoinsForUserCommand;
 import com.gatchasim.gatchasim.Database.User.UserDatabase;
 import com.gatchasim.gatchasim.GatchaSystem.Banner;
 import com.gatchasim.gatchasim.GatchaSystem.GatchaItem;
 import com.gatchasim.gatchasim.GatchaSystem.GatchaSystem;
 import com.gatchasim.gatchasim.Database.User.LoggedInUser;
+import com.gatchasim.gatchasim.GatchaSystem.NotEnoughCoinToPull;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,12 +34,12 @@ public class BannerSelectionController {
     @FXML
     private ListView<String> resultListView;
 
-    private int cookies = 0;
 
     private Banner currentBanner;
     private final NavigationService navigationService = new NavigationService();
     private final UserDatabase userDatabase = UserDatabase.getInstance();
     private final InventoryDatabase inventoryDatabase = InventoryDatabase.getInstance();
+    private final GetCoinsForUserCommand getCoins = new GetCoinsForUserCommand();
 
     @FXML
     public void initialize() {
@@ -49,7 +52,6 @@ public class BannerSelectionController {
             }
         });
 
-        cookies = userDatabase.getCoinsForUser(LoggedInUser.getUsername());
         updateCoinLabel();
     }
 
@@ -65,55 +67,53 @@ public class BannerSelectionController {
 
     @FXML
     void onSinglePull(ActionEvent event) {
-        if (cookies < 10) {
-            showAlert("Nincs elég Coin-od!");
-            return;
-        }
         if (currentBanner == null) {
             showAlert("Válassz egy Bannert!");
             return;
         }
 
-        cookies -= 10;
-        GatchaItem result = GatchaSystem.GetInstance().Pull();
-        resultListView.getItems().add(result.GetName());
-        savePulledItemToInventory(result);
-        updateCoinLabel();
+        try {
+            GatchaItem result = GatchaSystem.GetInstance().Pull();
+            resultListView.getItems().add(result.GetName());
+            savePulledItemToInventory(result);
+            updateCoinLabel();
+        }
+        catch (NotEnoughCoinToPull e){
+                showAlert("Nincs elég Coinod!");
+        }
+
     }
 
     @FXML
     void onTenPull(ActionEvent event) {
-        if (cookies < 100) {
-            showAlert("Nincs elég Coinod!");
-            return;
-        }
         if (currentBanner == null) {
             showAlert("Válassz egy Bannert!");
             return;
         }
-
-        cookies -= 100;
-        List<GatchaItem> results = GatchaSystem.GetInstance().TenPull();
-        for (GatchaItem item : results) {
-            resultListView.getItems().add(item.GetName());
-            savePulledItemToInventory(item);
+        try {
+            List<GatchaItem> results = GatchaSystem.GetInstance().TenPull();
+            for (GatchaItem item : results) {
+                resultListView.getItems().add(item.GetName());
+                savePulledItemToInventory(item);
+                updateCoinLabel();
+            }
         }
-        updateCoinLabel();
+        catch (NotEnoughCoinToPull e){
+            showAlert("Nincs elég Coinod!");
+        }
+
     }
 
     @FXML
     void onBackToMenu(ActionEvent event) {
         String username = LoggedInUser.getUsername();
-        if (username != null) {
-            userDatabase.updateCoinsForUser(username, cookies);
-        }
         navigationService.navigateTo("/com/gatchasim/gatchasim/main_view.fxml", "Főmenü");
         Stage currentStage = (Stage) BackToMenuButton.getScene().getWindow();
         navigationService.closeStage(currentStage);
     }
 
     private void updateCoinLabel() {
-        coinLabel.setText("Coins: " + cookies);
+        coinLabel.setText("Coins: " + getCoins.execute());
     }
 
     private void showAlert(String msg) {
