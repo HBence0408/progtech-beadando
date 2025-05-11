@@ -10,10 +10,10 @@ import java.util.List;
 public class GetItemsCommand implements IQueryCommand<List<GatchaItem>> {
 
 
-    private final String rarity;
-    private final String banner;
+    private final Integer rarity;
+    private final Integer banner;
 
-    public  GetItemsCommand(String rarity, String banner) {
+    public  GetItemsCommand(Integer rarity, Integer banner) {
         this.rarity = rarity;
         this.banner = banner;
     }
