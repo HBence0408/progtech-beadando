@@ -20,4 +20,8 @@ public abstract class GatchaItemDecorator implements GatchaItem {
     public String toString() {
         return gatchaItem.toString();
     }
+    @Override
+    public int getId() {
+        return gatchaItem.getId();
+    }
 }

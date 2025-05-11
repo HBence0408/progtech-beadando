@@ -1,6 +1,7 @@
 package com.gatchasim.gatchasim.GatchaSystem;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -18,6 +19,14 @@ public class GatchaSystem {
     }
 
     private Banner currentBanner;
+
+    public void setCurrentBanner(Banner banner) {
+        this.currentBanner = banner;
+    }
+
+    public Banner getCurrentBanner() {
+        return this.currentBanner;
+    }
 
     public GatchaItem Pull(){
 
@@ -41,9 +50,15 @@ public class GatchaSystem {
         }
     }
 
+
     public List<GatchaItem> TenPull(){
-        return null;
+        List<GatchaItem> results = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            results.add(Pull());
+        }
+        return results;
     }
     //TODO: 10pull
+
 
 }

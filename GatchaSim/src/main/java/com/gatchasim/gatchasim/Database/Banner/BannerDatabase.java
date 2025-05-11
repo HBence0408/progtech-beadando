@@ -7,6 +7,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import java.util.List;
 
 public class BannerDatabase extends Database {
@@ -20,6 +27,7 @@ public class BannerDatabase extends Database {
      }
 
     public List<GatchaItem> getItems(Integer rarity, Integer banner){
+
          // adott táblából a rarity (ritkaság) alapján csillagosak lekérése
 
         List<GatchaItem> result = new ArrayList<>();
@@ -27,7 +35,9 @@ public class BannerDatabase extends Database {
         try {
             Connection conn = getConnection();
             PreparedStatement stmt = conn.prepareStatement(
-                    "SELECT i.name, i.multiplier " +
+
+                    "SELECT i.id, i.name, i.multiplier " +
+
                             "FROM banner b " +
                             "JOIN items i ON " +
                             "    (CASE ? " +
@@ -44,25 +54,11 @@ public class BannerDatabase extends Database {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String name = rs.getString("name");
                 int multiplier = rs.getInt("multiplier");
-
-                BaseItem baseItem = new BaseItem(multiplier, name);
-
-                switch (rarity) {
-                    case 3:
-                        ThreeStarItem star3 = new ThreeStarItem(baseItem);
-                        result.add(star3);
-                        break;
-                    case 4:
-                        ThreeStarItem star4 = new ThreeStarItem(baseItem);
-                        result.add(star4);
-                        break;
-                    case 5:
-                        ThreeStarItem star5 = new ThreeStarItem(baseItem);
-                        result.add(star5);
-                        break;
-                }
+                BaseItem baseItem = new BaseItem(id, multiplier, name);
+                result.add(baseItem);
 
             }
 
@@ -75,5 +71,17 @@ public class BannerDatabase extends Database {
 
         return result;
     }
-
+    public List<Integer> getAllBannerIds() {
+        List<Integer> ids = new ArrayList<>();
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement("SELECT banner_id FROM banner");
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                ids.add(rs.getInt("banner_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ids;
+    }
 }
