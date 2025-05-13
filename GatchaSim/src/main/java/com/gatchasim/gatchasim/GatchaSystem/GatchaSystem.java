@@ -56,7 +56,7 @@ public class GatchaSystem {
             fourStarChance = 100;
         }
 
-        if (num <= fiveStarChance){  // még később lehet radiant blessing meg a 50 50 számolása
+        if (num <= fiveStarChance){
             return currentBanner.FiveStarPull();
         }else if (num <= fourStarChance){
             return currentBanner.FourStarPull();
@@ -73,7 +73,4 @@ public class GatchaSystem {
         }
         return results;
     }
-    //TODO: 10pull
-
-
 }

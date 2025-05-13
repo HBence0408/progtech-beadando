@@ -11,12 +11,6 @@ public class Banner {
 
     private Integer banner_id;
 
-    private int pity;
-
-    public int GetPity() {
-        return pity;
-    }
-
     private int pullsSinceLast4Star;
 
     public int GetPullsSinceLast4Star() {
@@ -53,6 +47,9 @@ public class Banner {
         List<GatchaItem> items = get3starCommand.execute();
         GatchaItem item = items.get(rnd.nextInt(items.size()));
         item = new ThreeStarItem(item);
+        pullsSinceLast4Star += 1;
+        pullsSinceLast5Star += 1;
+
         return (ThreeStarItem) item;
     }
 
@@ -61,6 +58,7 @@ public class Banner {
         GatchaItem item = items.get(rnd.nextInt(items.size()));
         item = new FourStarItem(item);
         pullsSinceLast4Star = 0;
+        pullsSinceLast5Star += 1;
         return (FourStarItem) item;
     }
 
