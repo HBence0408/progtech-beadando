@@ -1,6 +1,7 @@
 package com.gatchasim.gatchasim.JavaFX;
 
 import com.gatchasim.gatchasim.Database.User.AddUserCommand;
+import com.gatchasim.gatchasim.Database.User.IsUsernameTakenCommand;
 import com.gatchasim.gatchasim.Database.User.UserDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,8 +29,8 @@ public class RegisterController {
             messageLabel.setText("A jelszavak nem egyeznek!");
             return;
         }
-
-        if (UserDatabase.getInstance().isUsernameTaken(username)) {
+        IsUsernameTakenCommand isTaken = new IsUsernameTakenCommand(username);
+        if (/* UserDatabase.getInstance().isUsernameTaken(username)*/ isTaken.execute()) {
             messageLabel.setText("Ez a felhasználónév már létezik!");
             return;
         }

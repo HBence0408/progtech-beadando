@@ -1,15 +1,15 @@
 package com.gatchasim.gatchasim.JavaFX;
 
+import com.gatchasim.gatchasim.Database.Inventory.GetEquippedItemMultiplierCommand;
+import com.gatchasim.gatchasim.Database.Inventory.GetEquippedItemRarityCommand;
 import com.gatchasim.gatchasim.Database.Inventory.InventoryDatabase;
-import com.gatchasim.gatchasim.Database.User.UserHelper;
+import com.gatchasim.gatchasim.Database.User.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import com.gatchasim.gatchasim.Database.User.UserDatabase;
-import com.gatchasim.gatchasim.Database.User.LoggedInUser;
 import javafx.scene.image.Image;
 
 import java.net.URL;
@@ -37,20 +37,26 @@ public class CCController {
     private final UserDatabase userDatabase = UserDatabase.getInstance();
     private final InventoryDatabase inventoryDatabase = InventoryDatabase.getInstance();
 
-    private final UserHelper userHelper = new UserHelper(UserDatabase.getInstance());
 
     @FXML
     private void initialize() {
         String username = LoggedInUser.getUsername();
-
-
+        GetUserIdByUsernameCommand getUserId = new GetUserIdByUsernameCommand(username);
+        GetCoinsForUserCommand getCoins = new GetCoinsForUserCommand();
         if (username != null) {
             try {
-                int userId = userDatabase.getUserIdByUsername(username);
-                int rarity = inventoryDatabase.getEquippedItemRarity(userId);
-                int multiplier = inventoryDatabase.getEquippedItemMultiplier(userId);
+                // int userId = userDatabase.getUserIdByUsername(username);
+                int userId = getUserId.execute();
+                GetEquippedItemRarityCommand getRarity = new GetEquippedItemRarityCommand(userId);
 
-                cookies = userDatabase.getCoinsForUser(username);
+                // int rarity = inventoryDatabase.getEquippedItemRarity(userId);
+                int rarity = getRarity.execute();
+                GetEquippedItemMultiplierCommand getMultiplier = new GetEquippedItemMultiplierCommand(userId);
+                int multiplier = getMultiplier.execute();
+                // int multiplier = inventoryDatabase.getEquippedItemMultiplier(userId);
+
+                // cookies = userDatabase.getCoinsForUser(username);
+                cookies = getCoins.execute();
                 updateCurrencyDisplay();
 
 
@@ -86,10 +92,13 @@ public class CCController {
         }
     }
 
+
     private void handleReturnToMenu(ActionEvent event) {
         String username = LoggedInUser.getUsername();
+        UpdateCoinsForUserCommand updateCoins = new UpdateCoinsForUserCommand(cookies);
         if (username != null) {
-            userDatabase.updateCoinsForUser(username, cookies);
+            // userDatabase.updateCoinsForUser(username, cookies);
+            updateCoins.execute();
         }
 
         navigationService.navigateTo("/com/gatchasim/gatchasim/main_view.fxml", "Főmenü");

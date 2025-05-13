@@ -2,8 +2,10 @@ package com.gatchasim.gatchasim.JavaFX;
 
 import com.gatchasim.gatchasim.Database.Banner.BannerDatabase;
 import com.gatchasim.gatchasim.Database.Banner.GetItemsCommand;
+import com.gatchasim.gatchasim.Database.Inventory.AddItemToInventoryCommand;
 import com.gatchasim.gatchasim.Database.Inventory.InventoryDatabase;
 import com.gatchasim.gatchasim.Database.User.GetCoinsForUserCommand;
+import com.gatchasim.gatchasim.Database.User.GetUserIdByUsernameCommand;
 import com.gatchasim.gatchasim.Database.User.UserDatabase;
 import com.gatchasim.gatchasim.GatchaSystem.Banner;
 import com.gatchasim.gatchasim.GatchaSystem.GatchaItem;
@@ -57,9 +59,13 @@ public class BannerSelectionController {
 
     private void savePulledItemToInventory(GatchaItem item) { //Egyenlőre ez az ami kimenti az adatbázisba az itemeket
         try {
-            int userId = userDatabase.getUserIdByUsername(LoggedInUser.getUsername());
+            GetUserIdByUsernameCommand getUserId = new GetUserIdByUsernameCommand(LoggedInUser.getUsername());
+            // int userId = userDatabase.getUserIdByUsername(LoggedInUser.getUsername());
+            int userId = getUserId.execute();
             int quantity = 1;
-            inventoryDatabase.addItemToInventory(userId, item.getId(), quantity);
+            // inventoryDatabase.addItemToInventory(userId, item.getId(), quantity);
+            AddItemToInventoryCommand addItem = new AddItemToInventoryCommand(userId, item.getId(), quantity);
+            addItem.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
