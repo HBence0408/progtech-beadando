@@ -1,7 +1,10 @@
 package com.gatchasim.gatchasim.JavaFX;
 
+import com.gatchasim.gatchasim.Database.Inventory.EquipItemCommand;
+import com.gatchasim.gatchasim.Database.Inventory.GetUserInventoryCommand;
 import com.gatchasim.gatchasim.Database.Inventory.InventoryDatabase;
 import com.gatchasim.gatchasim.Database.Inventory.InventoryItem;
+import com.gatchasim.gatchasim.Database.User.GetUserIdByUsernameCommand;
 import com.gatchasim.gatchasim.Database.User.LoggedInUser;
 import com.gatchasim.gatchasim.Database.User.UserDatabase;
 import com.gatchasim.gatchasim.Logger;
@@ -30,7 +33,9 @@ public class InventoryViewController {
     private final NavigationService navigationService = new NavigationService();
     private int getUserId(String username) {
         try {
-            return UserDatabase.getInstance().getUserIdByUsername(username);
+            GetUserIdByUsernameCommand getUserId = new GetUserIdByUsernameCommand(username);
+            // return UserDatabase.getInstance().getUserIdByUsername(username);
+            return getUserId.execute();
         } catch (SQLException e) {
             messageLabel.setText("Hiba történt a felhasználó ID lekérésekor!");
             Logger.getInstance().logError(e);
@@ -42,7 +47,9 @@ public class InventoryViewController {
         inventoryListView.getItems().clear();
         String username = LoggedInUser.getUsername();
         try {
-            List<InventoryItem> inventoryItems = InventoryDatabase.getInstance().getUserInventory(username);
+            GetUserInventoryCommand getInv = new GetUserInventoryCommand(username);
+            // List<InventoryItem> inventoryItems = InventoryDatabase.getInstance().getUserInventory(username);
+            List<InventoryItem> inventoryItems = getInv.execute();
 
             inventoryListView.getItems().addAll(inventoryItems);
 
@@ -70,7 +77,9 @@ public class InventoryViewController {
         }
 
         try {
-            InventoryDatabase.getInstance().equipItem(userId, selected.getInventoryId());
+            EquipItemCommand EquipItem = new EquipItemCommand(userId, selected.getInventoryId());
+            // InventoryDatabase.getInstance().equipItem(userId, selected.getInventoryId());
+            EquipItem.execute();
             messageLabel.setText("Item sikeresen equipelve!");
         } catch (SQLException e) {
             Logger.getInstance().logError(e);
