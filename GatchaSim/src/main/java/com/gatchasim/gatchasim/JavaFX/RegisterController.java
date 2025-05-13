@@ -30,7 +30,7 @@ public class RegisterController {
             return;
         }
         IsUsernameTakenCommand isTaken = new IsUsernameTakenCommand(username);
-        if (/* UserDatabase.getInstance().isUsernameTaken(username)*/ isTaken.execute()) {
+        if ( isTaken.execute()) {
             messageLabel.setText("Ez a felhasználónév már létezik!");
             return;
         }

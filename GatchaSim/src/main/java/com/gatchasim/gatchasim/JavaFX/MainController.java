@@ -23,7 +23,6 @@ public class MainController {
         private final NavigationService navigationService = new NavigationService();
         @FXML
         private void ShowCC(ActionEvent event) {
-            // TODO: Cookie Clicker megoldás
             navigationService.navigateTo("/com/gatchasim/gatchasim/cc_view.fxml", "Cookie Clicker");
 
             Stage currentStage = (Stage) CCButton.getScene().getWindow();
@@ -42,7 +41,6 @@ public class MainController {
 
         @FXML
         private void ShowBanner(ActionEvent event) {
-            // TODO: Bannerek Megjelenítésének megoldása
             navigationService.navigateTo("/com/gatchasim/gatchasim/banner_view.fxml", "Bannerek");
 
             Stage currentStage = (Stage) BannerButton.getScene().getWindow();
@@ -51,8 +49,6 @@ public class MainController {
 
         @FXML
         private void Logout(ActionEvent event) {
-            System.out.println("Kijelentkezés");
-
             LoggedInUser.logout();
 
             navigationService.navigateTo("/com/gatchasim/gatchasim/login_view.fxml", "Bejelentkezés");

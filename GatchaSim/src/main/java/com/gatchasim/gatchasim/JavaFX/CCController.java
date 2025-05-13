@@ -34,8 +34,6 @@ public class CCController {
     private int cookies = 0;
 
     private final NavigationService navigationService = new NavigationService();
-    private final UserDatabase userDatabase = UserDatabase.getInstance();
-    private final InventoryDatabase inventoryDatabase = InventoryDatabase.getInstance();
 
 
     @FXML
@@ -45,17 +43,13 @@ public class CCController {
         GetCoinsForUserCommand getCoins = new GetCoinsForUserCommand();
         if (username != null) {
             try {
-                // int userId = userDatabase.getUserIdByUsername(username);
                 int userId = getUserId.execute();
                 GetEquippedItemRarityCommand getRarity = new GetEquippedItemRarityCommand(userId);
 
-                // int rarity = inventoryDatabase.getEquippedItemRarity(userId);
                 int rarity = getRarity.execute();
                 GetEquippedItemMultiplierCommand getMultiplier = new GetEquippedItemMultiplierCommand(userId);
                 int multiplier = getMultiplier.execute();
-                // int multiplier = inventoryDatabase.getEquippedItemMultiplier(userId);
 
-                // cookies = userDatabase.getCoinsForUser(username);
                 cookies = getCoins.execute();
                 updateCurrencyDisplay();
 
@@ -97,7 +91,6 @@ public class CCController {
         String username = LoggedInUser.getUsername();
         UpdateCoinsForUserCommand updateCoins = new UpdateCoinsForUserCommand(cookies);
         if (username != null) {
-            // userDatabase.updateCoinsForUser(username, cookies);
             updateCoins.execute();
         }
 

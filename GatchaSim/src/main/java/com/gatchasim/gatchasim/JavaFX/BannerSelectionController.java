@@ -39,8 +39,6 @@ public class BannerSelectionController {
 
     private Banner currentBanner;
     private final NavigationService navigationService = new NavigationService();
-    private final UserDatabase userDatabase = UserDatabase.getInstance();
-    private final InventoryDatabase inventoryDatabase = InventoryDatabase.getInstance();
     private final GetCoinsForUserCommand getCoins = new GetCoinsForUserCommand();
 
     @FXML
@@ -60,10 +58,8 @@ public class BannerSelectionController {
     private void savePulledItemToInventory(GatchaItem item) { //Egyenlőre ez az ami kimenti az adatbázisba az itemeket
         try {
             GetUserIdByUsernameCommand getUserId = new GetUserIdByUsernameCommand(LoggedInUser.getUsername());
-            // int userId = userDatabase.getUserIdByUsername(LoggedInUser.getUsername());
             int userId = getUserId.execute();
             int quantity = 1;
-            // inventoryDatabase.addItemToInventory(userId, item.getId(), quantity);
             AddItemToInventoryCommand addItem = new AddItemToInventoryCommand(userId, item.getId(), quantity);
             addItem.execute();
         } catch (SQLException e) {

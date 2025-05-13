@@ -34,7 +34,6 @@ public class InventoryViewController {
     private int getUserId(String username) {
         try {
             GetUserIdByUsernameCommand getUserId = new GetUserIdByUsernameCommand(username);
-            // return UserDatabase.getInstance().getUserIdByUsername(username);
             return getUserId.execute();
         } catch (SQLException e) {
             messageLabel.setText("Hiba történt a felhasználó ID lekérésekor!");
@@ -48,7 +47,6 @@ public class InventoryViewController {
         String username = LoggedInUser.getUsername();
         try {
             GetUserInventoryCommand getInv = new GetUserInventoryCommand(username);
-            // List<InventoryItem> inventoryItems = InventoryDatabase.getInstance().getUserInventory(username);
             List<InventoryItem> inventoryItems = getInv.execute();
 
             inventoryListView.getItems().addAll(inventoryItems);
@@ -78,7 +76,6 @@ public class InventoryViewController {
 
         try {
             EquipItemCommand EquipItem = new EquipItemCommand(userId, selected.getInventoryId());
-            // InventoryDatabase.getInstance().equipItem(userId, selected.getInventoryId());
             EquipItem.execute();
             messageLabel.setText("Item sikeresen equipelve!");
         } catch (SQLException e) {
